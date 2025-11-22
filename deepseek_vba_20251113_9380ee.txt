@@ -1,0 +1,35 @@
+// 带简单响应的聊天脚本
+
+Function GetResponseMessage(keyword)
+    Dim response
+    Select Case LCase(keyword)
+        Case "你好", "hello", "hi"
+            response = "你好！很高兴见到你"
+        Case "时间", "time"
+            response = "现在时间是：" & Now()
+        Case "天气", "weather"
+            response = "今天天气看起来不错"
+        Case Else
+            response = "我看到了你的消息"
+    End Select
+    GetResponseMessage = response
+End Function
+
+// 主程序
+Delay 3000
+MessageBox "监控模式启动，将自动响应特定关键词"
+
+While True
+    // 这里需要配合屏幕识别或剪贴板监控
+    // 实际使用时需要更复杂的实现
+    
+    // 简单演示 - 定时发送
+    If RandomNumber(1, 100) > 80 Then  // 20%概率主动发言
+        KeyPress "T", 1
+        Delay 500
+        SayString "我还在线呢！"
+        KeyPress "Enter", 1
+    End If
+    
+    Delay 10000  // 每10秒检查一次
+Wend
